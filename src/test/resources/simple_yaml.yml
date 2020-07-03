@@ -1,0 +1,18 @@
+piggies:
+  one: built his house from straw
+  two: built his house from twigs
+  three: built his house form bricks
+numbers:
+  - number one
+  - number two
+  - number three
+  - number four
+shopping:
+  food:
+    - oranges
+    - apples
+  other:
+    - detergent
+    - toilet roll:
+        fluffy: yes please
+        smooth: no thanks
