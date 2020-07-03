@@ -92,7 +92,36 @@ YAML files can contain certificates anywhere inside them, encoded in one of the 
 
 NB. YAML interprets new lines as spaces in Base64 encoded certificates. In some cases, it's important to preserve the line breaks, too - and a solution for this is to Base64 encode the whole certificate - including the headers and line breaks. `swapc` detects this and understands it as another certificate format.
 
-## Sample uses
+## Sample output
+
+Here's an example, using `swapc` to search all files in a folder for any certificates:
+
+```bash
+$ java -jar build/libs/swapc-1.0-SNAPSHOT-all.jar find -r ./out/test/resources 
+Recursion: enabled
+Searching: ./out/test/resources
+- sample_public_unchained.der [DER]
+- example_com.cert [DER]
+- sample_public_unchained.pem [PEM]
+- sample_yaml_with_certs.yaml:.someCerts[0].aCertOnMultipleLines [B64,SP]
+- sample_yaml_with_certs.yaml:.someCerts[1].aCertOnOneLine [B64]
+- sample_yaml_with_certs.yaml:.someCerts[2].aCertOnMultipleLinesWithHeaders [B64,HDR,SP]
+- sample_yaml_with_certs.yaml:.someCerts[3].aCertOnMultipleLinesWithHeadersAndTwiceEncodedBackOntoOneLine [PEM,B64]
+- sample_public_unchained.b64 [B64,NL]
+Examined 8 files.
+Found 8 certificates.
+```
+
+You can see in the output that `swapc` has classified the format of each find:
+
+* `[DER]` = a binary formatted certificate.
+* `[PEM]` = a Base64 encoded certificate, with line breaks and PEM headers.
+* `[B64,SP]` = a Base64 encoded certificate, with spaces between lines.
+* `[B64,HDR,SP]` = a Base64 encoded certificate, with spaces between lines, and PEM headers.
+* `[PEM,B64]` = a PEM encoded certificate that has been Base64 re-encoded into a single line.
+* `[B64,NL]` = a Base64 encoded certificate, with line breaks.
+
+## Examples
 
 ### Find
 
