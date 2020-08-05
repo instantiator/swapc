@@ -1,6 +1,6 @@
 # swapc
 
-`swapc` (prounounced 'swapsy') is a tool for finding certificates by criteria (in individual files, or inside yaml) and replacing them with a new certificate _in the same format._
+`swapc` (prounounced 'swapsy') is a tool for finding certificates by criteria (in individual files, or inside yaml) and (optionally) replacing them. Replacements are made matching the format of the found certificate.
 
 ## Building
 
